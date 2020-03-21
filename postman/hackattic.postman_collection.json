@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "3d3742b1-ee23-427f-a23f-8d48b3d7d06f",
+		"name": "hackattic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reading QR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tasks/reading_qr",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"reading_qr"
+					]
+				},
+				"description": "https://hackattic.com/challenges/reading_qr"
+			},
+			"response": []
+		},
+		{
+			"name": "Backup restore",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tasks/backup_restore",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"backup_restore"
+					]
+				},
+				"description": "https://hackattic.com/challenges/backup_restore"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
