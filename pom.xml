@@ -16,7 +16,8 @@
 
     <properties>
         <java.version>11</java.version>
-        <apache.commons.io.version>2.6</apache.commons.io.version>
+        <apache-commons-io.version>2.6</apache-commons-io.version>
+        <zxing.version>3.4.0</zxing.version>
     </properties>
 
     <dependencies>
@@ -58,12 +59,24 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>${apache.commons.io.version}</version>
+            <version>${apache-commons-io.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>${zxing.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>${zxing.version}</version>
         </dependency>
 
         <!-- Test dependencies: -->

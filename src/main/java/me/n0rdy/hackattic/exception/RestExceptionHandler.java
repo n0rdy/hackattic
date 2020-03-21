@@ -21,6 +21,22 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler
+    public ResponseEntity<RestResponse> handle(EmptyResponseBodyException exception) {
+        logger.error("Empty response body exception occurred: ", exception);
+        return ResponseEntity
+                       .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                       .body(RestResponse.error("Hackattic response body is empty"));
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<RestResponse> handle(GeneralTaskException exception) {
+        logger.error("Task exception occurred: ", exception);
+        return ResponseEntity
+                       .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                       .body(RestResponse.error(exception.getMessage()));
+    }
+
+    @ExceptionHandler
     public ResponseEntity<RestResponse> handle(Exception exception) {
         logger.error("Server exception occurred: ", exception);
         return ResponseEntity

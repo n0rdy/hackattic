@@ -2,6 +2,8 @@ package me.n0rdy.hackattic.task.backup_restore;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import me.n0rdy.hackattic.exception.EmptyResponseBodyException;
+import me.n0rdy.hackattic.exception.TaskRestException;
 import me.n0rdy.hackattic.model.HackatticServerResponse;
 import me.n0rdy.hackattic.service.TaskService;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,10 @@ public class BackupRestoreTaskService implements TaskService {
         DbDump dbDump = restTemplate.getForEntity(buildProblemUri(getTaskName()), DbDump.class)
                                 .getBody();
 
+        if (dbDump == null) {
+            throw new EmptyResponseBodyException();
+        }
+
         byte[] decodedDbDump = Base64.getDecoder().decode(dbDump.getDump().getBytes());
         decompress(decodedDbDump, DUMP_FILE_NAME);
 
@@ -41,7 +47,17 @@ public class BackupRestoreTaskService implements TaskService {
         ResponseEntity<HackatticServerResponse> response
                 = restTemplate.postForEntity(buildSolutionUri(getTaskName()), aliveSsns, HackatticServerResponse.class);
 
-        return response.getBody();
+        HackatticServerResponse hackatticResponse = response.getBody();
+
+        if (hackatticResponse == null) {
+            throw new EmptyResponseBodyException();
+        }
+
+        if (hackatticResponse.rejected()) {
+            throw new TaskRestException(400, hackatticResponse.getRejected());
+        }
+
+        return hackatticResponse;
     }
 
     @SneakyThrows

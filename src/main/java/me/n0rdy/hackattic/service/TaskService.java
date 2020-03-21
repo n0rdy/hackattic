@@ -7,5 +7,5 @@ public interface TaskService {
 
     String getTaskName();
 
-    void cleanUp();
+    default void cleanUp() {}
 }
