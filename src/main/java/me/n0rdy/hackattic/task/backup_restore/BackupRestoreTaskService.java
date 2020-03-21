@@ -2,6 +2,7 @@ package me.n0rdy.hackattic.task.backup_restore;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import me.n0rdy.hackattic.config.HackatticClient;
 import me.n0rdy.hackattic.exception.EmptyResponseBodyException;
 import me.n0rdy.hackattic.exception.TaskRestException;
 import me.n0rdy.hackattic.model.HackatticServerResponse;
@@ -25,18 +26,13 @@ import static me.n0rdy.hackattic.util.HackatticRemoteUrlBuilder.buildSolutionUri
 public class BackupRestoreTaskService implements TaskService {
     private static final String DUMP_FILE_NAME = "db";
 
-    private final RestTemplate restTemplate;
+    private final HackatticClient hackatticClient;
     private final BackupRestoreRepository repository;
 
     @SneakyThrows
     @Override
     public HackatticServerResponse solve() {
-        DbDump dbDump = restTemplate.getForEntity(buildProblemUri(getTaskName()), DbDump.class)
-                                .getBody();
-
-        if (dbDump == null) {
-            throw new EmptyResponseBodyException();
-        }
+        DbDump dbDump = hackatticClient.getTask(getTaskName(), DbDump.class);
 
         byte[] decodedDbDump = Base64.getDecoder().decode(dbDump.getDump().getBytes());
         decompress(decodedDbDump, DUMP_FILE_NAME);
@@ -44,20 +40,7 @@ public class BackupRestoreTaskService implements TaskService {
         repository.restoreDbFromDump(DUMP_FILE_NAME);
         Ssns aliveSsns = repository.getAliveSsns();
 
-        ResponseEntity<HackatticServerResponse> response
-                = restTemplate.postForEntity(buildSolutionUri(getTaskName()), aliveSsns, HackatticServerResponse.class);
-
-        HackatticServerResponse hackatticResponse = response.getBody();
-
-        if (hackatticResponse == null) {
-            throw new EmptyResponseBodyException();
-        }
-
-        if (hackatticResponse.rejected()) {
-            throw new TaskRestException(400, hackatticResponse.getRejected());
-        }
-
-        return hackatticResponse;
+        return hackatticClient.postSolution(getTaskName(), aliveSsns);
     }
 
     @SneakyThrows

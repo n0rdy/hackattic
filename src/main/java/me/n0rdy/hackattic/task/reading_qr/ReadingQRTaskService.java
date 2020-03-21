@@ -2,6 +2,7 @@ package me.n0rdy.hackattic.task.reading_qr;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import me.n0rdy.hackattic.config.HackatticClient;
 import me.n0rdy.hackattic.exception.EmptyResponseBodyException;
 import me.n0rdy.hackattic.exception.GeneralTaskException;
 import me.n0rdy.hackattic.exception.TaskRestException;
@@ -19,36 +20,18 @@ import static me.n0rdy.hackattic.util.HackatticRemoteUrlBuilder.buildSolutionUri
 @Service("reading_qr")
 @RequiredArgsConstructor
 public class ReadingQRTaskService implements TaskService {
-    private final RestTemplate restTemplate;
+    private final HackatticClient hackatticClient;
     private final QRDecoder qrDecoder;
 
     @SneakyThrows
     @Override
     public HackatticServerResponse solve() {
-        QR qr = restTemplate.getForEntity(buildProblemUri(getTaskName()), QR.class)
-                                .getBody();
-
-        if (qr == null) {
-            throw new EmptyResponseBodyException();
-        }
+        QR qr = hackatticClient.getTask(getTaskName(), QR.class);
 
         String qrCode = qrDecoder.decode(URI.create(qr.getImageUrl()).toURL())
                            .orElseThrow(() -> new GeneralTaskException("QR code couldn't be extracted from the image"));
 
-        ResponseEntity<HackatticServerResponse> response
-                = restTemplate.postForEntity(buildSolutionUri(getTaskName()), new Code(qrCode), HackatticServerResponse.class);
-
-        HackatticServerResponse hackatticResponse = response.getBody();
-
-        if (hackatticResponse == null) {
-            throw new EmptyResponseBodyException();
-        }
-
-        if (hackatticResponse.rejected()) {
-            throw new TaskRestException(400, hackatticResponse.getRejected());
-        }
-
-        return hackatticResponse;
+        return hackatticClient.postSolution(getTaskName(), new Code(qrCode));
     }
 
     @Override
