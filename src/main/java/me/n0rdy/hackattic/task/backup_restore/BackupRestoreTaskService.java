@@ -2,14 +2,10 @@ package me.n0rdy.hackattic.task.backup_restore;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import me.n0rdy.hackattic.config.HackatticClient;
-import me.n0rdy.hackattic.exception.EmptyResponseBodyException;
-import me.n0rdy.hackattic.exception.TaskRestException;
+import me.n0rdy.hackattic.client.HackatticClient;
 import me.n0rdy.hackattic.model.HackatticServerResponse;
 import me.n0rdy.hackattic.service.TaskService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
@@ -17,9 +13,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
 import java.util.zip.GZIPInputStream;
-
-import static me.n0rdy.hackattic.util.HackatticRemoteUrlBuilder.buildProblemUri;
-import static me.n0rdy.hackattic.util.HackatticRemoteUrlBuilder.buildSolutionUri;
 
 @Service("backup_restore")
 @RequiredArgsConstructor

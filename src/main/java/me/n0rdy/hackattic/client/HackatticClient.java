@@ -1,4 +1,4 @@
-package me.n0rdy.hackattic.config;
+package me.n0rdy.hackattic.client;
 
 import lombok.RequiredArgsConstructor;
 import me.n0rdy.hackattic.exception.EmptyResponseBodyException;
