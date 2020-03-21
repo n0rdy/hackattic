@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: hackattic
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      indent-output: true
+      write-dates-as-timestamps: false
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+  datasource:
+    url: jdbc:postgresql://localhost/hackattic
+    username: postgres
+    password: admin
