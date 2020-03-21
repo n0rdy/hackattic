@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.net.URI;
 
+// https://hackattic.com/challenges/reading_qr
 @Service("reading_qr")
 @RequiredArgsConstructor
 public class ReadingQRTaskService implements TaskService {
