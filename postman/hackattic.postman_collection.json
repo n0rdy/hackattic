@@ -64,6 +64,26 @@
 				"description": "https://hackattic.com/challenges/help_me_unpack"
 			},
 			"response": []
+		},
+		{
+			"name": "Mini miner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tasks/mini_miner",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"mini_miner"
+					]
+				},
+				"description": "https://hackattic.com/challenges/mini-miner"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
