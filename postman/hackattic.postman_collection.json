@@ -44,6 +44,26 @@
 				"description": "https://hackattic.com/challenges/backup_restore"
 			},
 			"response": []
+		},
+		{
+			"name": "Help me unpack",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tasks/help_me_unpack",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"help_me_unpack"
+					]
+				},
+				"description": "https://hackattic.com/challenges/help_me_unpack"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

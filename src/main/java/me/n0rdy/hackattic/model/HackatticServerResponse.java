@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class HackatticServerResponse {
-    private String passed;
+    private String result;
     private String rejected;
     private String message;
     private String hint;
