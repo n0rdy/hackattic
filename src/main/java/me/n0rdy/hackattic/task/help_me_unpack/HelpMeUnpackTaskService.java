@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.Arrays;
 import java.util.Base64;
 
 // https://hackattic.com/challenges/help_me_unpack

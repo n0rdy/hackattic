@@ -84,6 +84,26 @@
 				"description": "https://hackattic.com/challenges/mini-miner"
 			},
 			"response": []
+		},
+		{
+			"name": "Collision course",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tasks/collision_course",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"collision_course"
+					]
+				},
+				"description": "https://hackattic.com/challenges/collision_course"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
