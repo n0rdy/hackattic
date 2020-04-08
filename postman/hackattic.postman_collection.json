@@ -104,6 +104,26 @@
 				"description": "https://hackattic.com/challenges/collision_course"
 			},
 			"response": []
+		},
+		{
+			"name": "Password hashing",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tasks/password_hashing",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"password_hashing"
+					]
+				},
+				"description": "https://hackattic.com/challenges/collision_course"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
