@@ -124,6 +124,26 @@
 				"description": "https://hackattic.com/challenges/collision_course"
 			},
 			"response": []
+		},
+		{
+			"name": "Jotting JWTs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/tasks/jotting_jwts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tasks",
+						"jotting_jwts"
+					]
+				},
+				"description": "https://hackattic.com/challenges/collision_course"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

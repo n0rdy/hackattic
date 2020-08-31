@@ -12,3 +12,7 @@ spring:
     url: jdbc:postgresql://localhost/hackattic
     username: postgres
     password: admin
+
+hachattic:
+  endpoints:
+    jotting_jwts: https://example.com
