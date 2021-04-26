@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <apache-commons-io.version>2.6</apache-commons-io.version>
+        <apache-commons-io.version>2.7</apache-commons-io.version>
         <zxing.version>3.4.0</zxing.version>
         <apache-commons-codec.version>1.14</apache-commons-codec.version>
         <bouncycastle.version>1.65</bouncycastle.version>
